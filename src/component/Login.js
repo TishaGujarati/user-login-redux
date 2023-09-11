@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../actions/userActions';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const login = () => {
-    const storedUsername = localStorage.getItem('username');
-    const storedPassword = localStorage.getItem('password');
-
-    if (username === storedUsername && password === storedPassword) {
-      console.log('Login successful');
-      navigate('/'); 
-    } else {
-      alert('Invalid username or password');
-    }
-  };
-
+const login = async () => {
+  const userData = { username, password };
+  try {
+    await dispatch(loginUser(userData));
+    console.log('Login successful');
+    navigate('/');
+  } catch (error) {
+    alert('Invalid username or password');
+  }
+};
   return (
     <div className="container mt-5">
       <h2>Login</h2>
