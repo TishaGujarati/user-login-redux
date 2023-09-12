@@ -11,7 +11,24 @@ const Registration = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const validateForm = () => {
+    if (!name || !username || !password || !confirmPassword) {
+      alert("All fields are required");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return false;
+    }
+    return true;
+  };
+
   const register = async () => {
+
+    if (!validateForm()) {
+      return;
+    }
+
     const userData = { name, username, password };
     try {
       await dispatch(registerUser(userData));

@@ -9,7 +9,20 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const validateForm = () => {
+    if (!username || !password) {
+      alert("Both username and password are required");
+      return false;
+    }
+    return true;
+  };
+
 const login = async () => {
+
+  if(!validateForm()){
+    return    
+  }
+  
   const userData = { username, password };
   try {
     await dispatch(loginUser(userData));

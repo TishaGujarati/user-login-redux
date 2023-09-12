@@ -11,7 +11,7 @@ export const registerUser = (userData) => async (dispatch) => {
     }
   } catch (error) {
     console.error('Registration error:', error);
-    alert('Registration error');
+    // alert('Registration error');
   }
 };
 
@@ -26,7 +26,7 @@ export const loginUser = (userData) => async (dispatch) => {
     }
   } catch (error) {
     console.error('Login error:', error);
-    alert('Login error');
+    // alert('Login error');
   }
 };
 
